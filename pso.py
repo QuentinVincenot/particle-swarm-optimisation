@@ -1,5 +1,9 @@
 from swarm import *
+from visualisation import *
 
+import matplotlib.pyplot as plt
+import mpl_toolkits.mplot3d.axes3d as p3
+import matplotlib.animation as animation
 import numpy as np
 
 
@@ -19,6 +23,9 @@ def optimize_problem(swarm, objective):
 	print("Starting optimization problem...\nOptimization problem objective : [{}, {}, {}]\n"
 		.format(objective[0], objective[1], objective[2]))
 	
+	plt, fig, scatterplot = initialize_plot(swarm, objective)
+	plt.pause(1.5)
+	
 	iteration_number = 0
 	while swarm.has_finished_searching(objective, iteration_number) == False:
 		if iteration_number % 2 == 0:
@@ -28,6 +35,8 @@ def optimize_problem(swarm, objective):
 		swarm.update_swarm_best_fitness(objective)
 		swarm.update_particles_velocities()
 		swarm.update_particles_positions()
+		
+		update_plot(plt, fig, scatterplot, swarm)
 
 		iteration_number += 1
 
