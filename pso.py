@@ -12,3 +12,5 @@ print(objective)
 
 particle = Particle()
 particle.print()
+
+print(particle.get_distance_from_objective(objective))
