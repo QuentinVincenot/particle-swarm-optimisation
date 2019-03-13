@@ -21,6 +21,14 @@ def optimize_problem(swarm, objective):
 	
 	iteration_number = 0
 	while swarm.has_finished_searching(objective, iteration_number) == False:
+		if iteration_number % 2 == 0:
+			print("Swarm best position/fitness ---> [{}, {}, {}] = {}"
+				.format(swarm.best_position[0], swarm.best_position[1], swarm.best_position[2], swarm.best_fitness))
+		swarm.update_particles_best_fitness(objective)
+		swarm.update_swarm_best_fitness(objective)
+		swarm.update_particles_velocities()
+		swarm.update_particles_positions()
+
 		iteration_number += 1
 
 	print(iteration_number)
