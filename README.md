@@ -8,3 +8,4 @@ python pso.py
 ```
 
 The program shall launch a dynamically evolving visualisation that looks like the following screenshot :
+![PSO main screenshot](images/pso-main-screenshot.png)
