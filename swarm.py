@@ -8,6 +8,22 @@ class Swarm:
 		self.best_position = np.random.randint(1000, size=(3, 1))
 		self.best_fitness = math.inf
 	
+	def has_finished_searching(self, objective, iteration_number):
+		if iteration_number >= 3000:
+			return True
+
+		number_of_particles = len(self.particles)
+		number_of_winner_particles = 0
+
+		for i in range(number_of_particles):
+			current_particle = self.particles[i]
+			current_particle_fitness = current_particle.get_distance_from_objective(objective)
+			if current_particle_fitness < 3:
+				number_of_winner_particles += 1
+		
+		percentage_of_winner_particles = 100 * number_of_winner_particles / number_of_particles
+		return (percentage_of_winner_particles > 80)
+
 	def update_particles_best_fitness(self, objective):
 		number_of_particles = len(self.particles)
 		for i in range(number_of_particles):
